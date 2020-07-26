@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nagp.devops.service.DevopsService;
 
 @RestController
-@RequestMapping(value = "/devops/v1")
+@RequestMapping(value = "/v1/devops")
 public class DevopsController {
 	
 	@Autowired
