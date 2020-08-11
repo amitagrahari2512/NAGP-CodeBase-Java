@@ -41,7 +41,7 @@ pipeline {
         stage('Sonar Analysis') {
             steps {
                 echo "Run Sonar Qube in master branch"
-                	withSonarQubeEnv("Sonar_Scanner") {
+                	withSonarQubeEnv("SonarQube") {
                 		bat "mvn sonar:sonar"
                 	}
             }
