@@ -7,7 +7,7 @@ pipeline {
     }
 
 	options {
-		timestamp()
+		timestamps()
 		
 		timeout(time: 1, unit:'HOURS')
 		
