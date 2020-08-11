@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
+        // Install the Maven version configured as "Maven" and add it to the path.
         maven "Maven"
     }
 
@@ -48,20 +48,20 @@ pipeline {
         }
         stage('Upload to Artifactory') {
         	steps {
-        		rtMavenDeployer {
+        		rtMavenDeployer (
         			id : 'deployer',
         			serverId: 'artifactory',
         			releaseRepo: 'maven-pipeline-repository',
         			snapshotRepo: 'maven-pipeline-repository-snapshot'
-        		}
-        		rtMavenRun {
+        		)
+        		rtMavenRun (
         			pom: 'pom.xml',
         			goals : 'clean install',
         			deployerId : 'deployer'
-        		}
-        		rtPublishBuildInfo {
+        		)
+        		rtPublishBuildInfo (
         			serverId : 'artifactory'
-        		}
+        		)
         	}
         }
     }
