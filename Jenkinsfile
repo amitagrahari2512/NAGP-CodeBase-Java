@@ -66,12 +66,12 @@ pipeline {
         }
         stage ('Docker Image') {
         	steps {
-        		bat '/bin/docker build -t https://hub.docker.com/repository/docker/amitagrahari2512/docker-test:${BUILD_NUMBER} --no-cache -f Dockerfile'
+        		bat 'docker build -t DockerRegistry:${BUILD_NUMBER} --no-cache -f "Dockerfile-DevOps"'
         	}
         }
         stage ('Push Image to Docker Hub') {
         	steps {
-        		bat '/bin/docker push https://hub.docker.com/repository/docker/amitagrahari2512/docker-test:${BUILD_NUMBER}'
+        		bat 'docker push DockerRegistry:${BUILD_NUMBER}'
         	}
         }
     }
