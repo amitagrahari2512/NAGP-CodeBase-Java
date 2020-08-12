@@ -95,7 +95,7 @@ pipeline {
         
         stage ('Docker Deployment') {
         	steps {
-        		bat 'docker container run --name devops_application -d -p 7000:8081' registry + ":$BUILD_NUMBER"
+        		bat "docker container run --name devops_application -d -p 7000:8081 $registry:$BUILD_NUMBER"
         	}
         }
 	}
