@@ -86,5 +86,17 @@ pipeline {
 		       }
         	}
         }
+        stage ('Stop Running Containers') {
+        	steps {
+        		bat 'docker container stop devops_application'
+				bat 'docker container rm devops_application'
+        	}
+        }
+        
+        stage ('Docker Deployment') {
+        	steps {
+        		bat docker container run --name devops_application -d -p 7000:8081 registry + ":$BUILD_NUMBER"
+        	}
+        }
 	}
 }
