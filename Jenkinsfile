@@ -64,5 +64,15 @@ pipeline {
         		)
         	}
         }
+        stage ('Docker Image') {
+        	steps {
+        		bat '/bin/docker build -t https://hub.docker.com/repository/docker/amitagrahari2512/docker-test:${BUILD_NUMBER} --no-cache -f Dockerfile'
+        	}
+        }
+        stage ('Push Image to Docker Hub') {
+        	steps {
+        		bat '/bin/docker push https://hub.docker.com/repository/docker/amitagrahari2512/docker-test:${BUILD_NUMBER}'
+        	}
+        }
     }
 }
