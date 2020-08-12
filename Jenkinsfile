@@ -1,4 +1,10 @@
 pipeline {
+	environment {
+	    registry = "amitagrahari2512/docker-test"
+	    registryCredential = 'DockerRegistry'
+	    dockerImage = ''
+  	}
+  	
     agent any
 
     tools {
@@ -65,14 +71,19 @@ pipeline {
         	}
         }
         stage ('Docker Image') {
-        	steps {
-        		bat 'docker build -t code_dev_ops:${BUILD_NUMBER} --no-cache -f Dockerfile .'
+        	steps{
+		        script {
+		          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+		        }
+      		}
+        }
+        stage ('Deploy Push Image to Docker Hub') {
+        	steps{
+		        script {
+		          docker.withRegistry( '', registryCredential ) {
+		            dockerImage.push()
+		          }
+		       }
         	}
         }
-        stage ('Push Image to Docker Hub') {
-        	steps {
-        		bat 'docker push code_dev_ops:${BUILD_NUMBER}'
-        	}
-        }
-    }
 }
