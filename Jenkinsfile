@@ -66,12 +66,12 @@ pipeline {
         }
         stage ('Docker Image') {
         	steps {
-        		bat 'docker build -t code_dev_ops:${BUILD_NUMBER} --no-cache -f Dockerfile'
+        		bat 'docker build -t DockerRegistry/code_dev_ops:${BUILD_NUMBER} --no-cache -f Dockerfile .'
         	}
         }
         stage ('Push Image to Docker Hub') {
         	steps {
-        		bat 'docker push code_dev_ops:${BUILD_NUMBER}'
+        		bat 'docker push DockerRegistry/code_dev_ops:${BUILD_NUMBER}'
         	}
         }
     }
