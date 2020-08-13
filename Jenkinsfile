@@ -88,14 +88,14 @@ pipeline {
         }
         stage ('Stop Running Containers') {
         	steps {
-        		bat 'docker container stop devops_application'
-				bat 'docker container rm devops_application'
+        		sh 'docker ps --filter name=devops_application | xargs --no-run-if-empt docker container stop devops_application'
+				sh 'docker container ls -a --filter name=devops_application | docker container rm devops_application'
         	}
         }
         
         stage ('Docker Deployment') {
         	steps {
-        		bat "docker container run --name devops_application -d -p 7000:8081 $registry:$BUILD_NUMBER"
+        		sh "docker container run --name devops_application -d -p 7000:8081 $registry:$BUILD_NUMBER"
         	}
         }
 	}
