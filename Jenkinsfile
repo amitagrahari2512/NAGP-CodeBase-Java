@@ -88,7 +88,7 @@ pipeline {
         }
         stage ('Stop Running Containers') {
         	steps {
-				bat label: '', script: ''' powershell .\\docker.ps1 '''
+				bat label: '', script: ''' powershell -ExecutionPolicy Bypass -File .\\docker.ps1 '''
         	}
         }
         
