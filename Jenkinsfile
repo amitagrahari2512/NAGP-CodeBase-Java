@@ -88,11 +88,7 @@ pipeline {
         }
         stage ('Stop Running Containers') {
         	steps {
-				containerid = docker ps -f name=devops_application
-				if (containerid)
-				{
-				 	write-host "Container exists | deleting"
-				}
+				bat label: '', script: ''' powershell .\\docker.ps1 '''
         	}
         }
         
