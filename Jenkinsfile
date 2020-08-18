@@ -80,7 +80,7 @@ pipeline {
         stage ('Deploy Push Image to Docker Hub') {
         	steps{
 		        script {
-		          docker.withRegistry( '', registryCredential ) {
+		          	docker.withRegistry( '', registryCredential ) {
 		            dockerImage.push()
 		          }
 		       }
@@ -88,8 +88,11 @@ pipeline {
         }
         stage ('Stop Running Containers') {
         	steps {
-        		bat 'docker container stop devops_application'
-				bat 'docker container rm devops_application'
+				$containerid = docker ps -f name=devops_application
+				if ($containerid)
+				{
+				 	write-host "Container exists | deleting"
+				}
         	}
         }
         
