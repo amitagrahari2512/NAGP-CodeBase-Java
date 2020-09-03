@@ -97,5 +97,11 @@ pipeline {
         		bat "docker container run --name devops_application -d -p 7000:8081 $registry:$BUILD_NUMBER"
         	}
         }
+        stage ('Deploy Helm Chart on Kubernetes') {
+        	steps {
+        		bat "kubectl create ns amitagrahari-$BUILD_NUMBER"
+        		bat "helm install devops-helm-test mychart --set image=$registry:$BUILD_NUMBER -n amitagrahari-$BUILD_NUMBER"
+        	}
+        }
 	}
 }
