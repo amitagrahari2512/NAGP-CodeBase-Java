@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: test-deployment-helm-1
-  namespace: test
   labels: 
     app: test-devops-app-1
 spec:
