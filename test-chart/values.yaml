@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+nodeport: 30333
+
 image:
   repository: amitagrahari2512/docker-test
   pullPolicy: IfNotPresent

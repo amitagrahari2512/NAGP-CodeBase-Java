@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: test-devops-app-1
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels: 
       app: test-devops-app-1
