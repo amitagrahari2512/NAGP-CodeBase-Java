@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: devops-declarative-deployment-helm-test
   labels: 
-    app: devops-app
+    app: devops-app-helm-test
 spec:
   replicas: {{ .Values.replicas }}
   selector:
