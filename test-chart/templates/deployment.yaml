@@ -1,18 +1,18 @@
-apiVersion: apps/v2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devops-declarative-deployment-helm-test
+  name: test-deployment-helm-1
   labels: 
-    app: devops-app-helm-test
+    app: test-devops-app-1
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels: 
-      app: devops-app-helm-test
+      app: test-devops-app-1
   template:
     metadata:
       labels:
-        app: devops-app-helm-test
+        app: test-devops-app-1
     spec:
       containers:
       -  name: devops
