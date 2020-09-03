@@ -100,7 +100,6 @@ pipeline {
         stage ('Deploy Helm Chart on Kubernetes') {
         	steps {
         		bat "kubectl create ns amitagrahari-$BUILD_NUMBER"
-        		bat "helm install devops-helm-test-1 test-chart --set image=$registry:$BUILD_NUMBER -n amitagrahari-$BUILD_NUMBER"
         	}
         }
 	}
